@@ -1,25 +1,37 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import ReactEcharts from "echarts-for-react";
+import { useSession } from "next-auth/react";
 
-const Chart = ({ chartdata }) => {
+interface ChartData {
+  items: {
+    fields: {
+      months: string;
+      data: number;
+    };
+  };
+}
+
+const Chart = ({ chartdata }: { chartdata: ChartData }) => {
   const [months, setMonths] = useState<string[]>([]);
   const [gdata, setGdata] = useState<number[]>([]);
+  const { data: session } = useSession();
 
   useEffect(() => {
-    console.log(chartdata);
+    if (chartdata.items && Array.isArray(chartdata.items)) {
+      const chartMonths: string[] = [];
+      const chartGData: number[] = [];
 
-    const chartMonths: string[] = [];
-    const chartGData: number[] = [];
+      chartdata.items.forEach((item: any) => {
+        chartMonths.push(item.fields.months);
+        chartGData.push(item.fields.data);
+      });
 
-    chartdata.items.forEach((item: any) => {
-      chartMonths.push(item.fields.months);
-      chartGData.push(item.fields.data);
-    });
-
-    setMonths(chartMonths);
-    setGdata(chartGData);
+      setMonths(chartMonths);
+      setGdata(chartGData);
+    }
   }, [chartdata]);
 
   const option = {
@@ -40,7 +52,7 @@ const Chart = ({ chartdata }) => {
 
   return (
     <div>
-      <ReactEcharts option={option} style={{ height: "400px" }} />
+      {session && <ReactEcharts option={option} style={{ height: "400px" }} />}
     </div>
   );
 };

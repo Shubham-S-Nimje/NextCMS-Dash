@@ -26,12 +26,14 @@ const GoogleSSO = () => {
 
   return (
     <div>
-      <div className="card">
-        <h1 className="card_title">Well Come</h1>
-        <button onClick={handleSignIn} className="btn">
-          Sign in with Google
-        </button>
-      </div>
+      {!session && (
+        <div className="card">
+          <h1 className="card_title">Well Come</h1>
+          <button onClick={handleSignIn} className="btn">
+            Sign in with Google
+          </button>
+        </div>
+      )}
     </div>
   );
 };
