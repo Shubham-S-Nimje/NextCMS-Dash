@@ -15,6 +15,7 @@ const authOption: NextAuthOptions = {
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
   ],
+  secret: process.env.NEXT_PUBLIC_JWT_SECRET,
   callbacks: {
     async signIn({ profile }) {
       if (!profile?.email) {
