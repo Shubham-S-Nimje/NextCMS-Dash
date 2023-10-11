@@ -1,0 +1,85 @@
+@import "variables.module";
+
+.card {
+  height: 37rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card_title {
+  margin: 15px;
+  font-size: 3rem;
+}
+
+.card_image {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin: 50px;
+  box-shadow: 0 5px 30px;
+  transition-duration: 0.2s;
+}
+
+.card_image:hover {
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  border: 2px solid $img-shadow-color;
+  margin: 50px;
+  box-shadow: 0 5px 30px $img-hover-shadow-color;
+}
+
+.card_name {
+  margin: 15px;
+  font-size: 1.5em;
+}
+
+.card_email {
+  margin: 5px;
+  font-size: 1em;
+  letter-spacing: 0.05rem;
+}
+
+.btn {
+  border: 1 solid;
+  cursor: pointer;
+  font-size: $btn-font-size;
+  font-weight: bold;
+  padding: 0.75em 2em;
+  letter-spacing: 0.05rem;
+  margin: 1em;
+  border-radius: 2rem;
+  transition-duration: 0.2s;
+}
+.btn:hover {
+  background-color: $btn-hover-bg-color;
+  outline: 2px #55d7dc;
+  color: $btn-hover-color;
+  font-size: $btn-hover-font-size;
+}
+
+.btn:focus {
+  background-color: $btn-focus-bg-color;
+  border-radius: 2rem;
+}
+
+.card_loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+}
